@@ -32,6 +32,7 @@ class RootComponent extends React.Component {
               <div key={i} className="home-graph">
                 <div className="subtitle">{name}</div>
                 <HomeGraph
+                  title={name}
                   data={data}
                   height={2 * 714}
                   width={2000} />

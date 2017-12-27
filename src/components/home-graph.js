@@ -4,9 +4,7 @@ import {
   forceSimulation,
   forceLink,
   forceManyBody,
-  forceCenter,
-  forceX,
-  forceY
+  forceX
 } from 'd3-force';
 
 import {
@@ -22,7 +20,7 @@ import {
  * @private
  */
 function generateSimulation(props) {
-  const {data, height, width, maxSteps, strength} = props;
+  const {data} = props;
   if (!data) {
     return {nodes: [], links: []};
   }
@@ -34,15 +32,10 @@ function generateSimulation(props) {
     .force('charge', forceManyBody())
     .force('link', forceLink().id(d => d.id).distance(25).strength(2))
     .force('x', forceX())
-    // .force('y', forceY())
-    // .force('link', forceLink().id(d => d.id))
-    // .force('charge', forceManyBody().strength(strength))
-    // .force('center', forceCenter(width / 2, height / 2))
     .stop();
 
   simulation.force('link').links(links);
 
-  const upperBound = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay()));
   for (let i = 0; i < 1000; ++i) {
     simulation.tick();
   }
@@ -73,7 +66,6 @@ function forceDirectLabels(labels) {
   const simulation = forceSimulation(nodes.concat(anchorNodes))
       .force('charge', forceManyBody().distanceMax(30).strength(d => d.anchor ? 0 : -30))
       .force('link', forceLink(links))
-      // .force('x', forceX())
       .stop();
 
   for (let i = 0; i < 1000; i++) {
@@ -82,20 +74,11 @@ function forceDirectLabels(labels) {
   return nodes;
 }
 
-function buildLabelMap(labelNodes) {
-  return labelNodes.reduce((acc, node) => {
+function buildLabelMap(nodes) {
+  return nodes.reduce((acc, node) => {
     acc[node.id] = node;
     return acc;
   }, {});
-}
-
-function getXYdims(nodes) {
-  return nodes.reduce((acc, node) => ({
-    minX: Math.min(acc.minX, node.x),
-    minY: Math.min(acc.minY, node.y),
-    maxX: Math.max(acc.maxX, node.x),
-    maxY: Math.max(acc.maxY, node.y)
-  }), {minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity});
 }
 
 class HomeGraph extends React.Component {
@@ -110,13 +93,14 @@ class HomeGraph extends React.Component {
   }
 
   render() {
-    const {height, width} = this.props;
+    const {height, width, title} = this.props;
     const {data, labelPositions} = this.state;
     const {nodes, links} = data;
     const labelMap = buildLabelMap(labelPositions);
-    const {minX, maxX} = getXYdims(labelPositions);
+    const nodeMap = buildLabelMap(nodes);
+    // const {minX, maxX} = getXYdims(labelPositions);
     return (
-      <XYPlot width={width} height={height} margin={100} >
+      <XYPlot width={width} height={height} margin={100} className={title.split(' ').join('-')}>
         {links.map(({source, target}, index) => (<LineSeries
           key={`link-${index}`}
           style={{stroke: 'black', strokeWidth: 4}}
@@ -144,13 +128,16 @@ class HomeGraph extends React.Component {
               fontSize: '24px',
               fontFamily: 'Norwester-Regular'
             };
-            const rows = row.id.split(' ').map((line, i) => {
-              return <tspan x="0" y={`${i * 24}px`} style={style}>{line}</tspan>;
+            const words = row.id.split(' ');
+            const rows = words.map((line, i) => {
+              const oddOffset = words.length % 2 ? 12 : 0;
+              return <tspan x="0" y={`${i * 24 + oddOffset}px`} style={style}>{line}</tspan>;
             });
+
             return (
               <g className="inner-inner-component">
                 <text
-                  style={{textAnchor: row.x < (maxX + minX) / 2 ? 'end' : 'start'}}
+                  style={{textAnchor: row.x < nodeMap[row.id].x ? 'end' : 'start'}}
                   x={0}
                   y={0}>{rows}</text>
               </g>
