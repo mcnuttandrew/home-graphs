@@ -55,19 +55,25 @@ a:visited {
 
 /* mobile adjustments */
 @media screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .app {
     padding: 10% 10%;
   }
+
   .title {
     font-size: 32px;
   }
 
   .gallery {
     align-self: auto;
+    max-width: 100%;
     width: 500px;
   }
 
   .picture-wrapper img {
-    max-width: 85% !important;
+    width: 100%;
   }
 }
