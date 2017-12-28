@@ -5,4 +5,4 @@ git checkout gh-pages &&
 mv gh-index.html index.html &&
 git add --a &&
 git commit -m 'Deploy' &&
-live-server
+git push --set-upstream origin gh-pages -f
