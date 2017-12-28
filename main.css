@@ -48,9 +48,11 @@ a:visited {
   max-height: 300px;
 }
 
-.picture-explainer {
-  font-size: 10px;
+.picture-wrapper a {
+  display: flex;
+  height: 100%;
 }
+
 /* mobile adjustments */
 @media screen and (max-width: 600px) {
   .app {
@@ -58,5 +60,14 @@ a:visited {
   }
   .title {
     font-size: 32px;
+  }
+
+  .gallery {
+    align-self: auto;
+    width: 500px;
+  }
+
+  .picture-wrapper img {
+    max-width: 85% !important;
   }
 }
