@@ -1,15 +1,71 @@
 <!doctype html>
 <html>
   <head>
-    <title>HOME GRAPH</title>
+    <title>CONSTELLATIONS OF HOME</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet" />
-
+    <link href="main.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="app"></div>
-    <script src="bundle.js"></script>
+    <div class="app">
+      <div class="title-wrapper">
+        <div class="title">
+          Constellations of Home
+        </div>
+        <div class="subtitle">
+          By <a href="http://www.mcnutt.in/">Andrew McNutt</a>
+        </div>
+      </div>
+      <div class="main-content">
+        <p>
+          This year (2017), for the first time ever, I decided to make Christmas cards. I’ve just finished my first quarter of graduate school in computer science, as well as my first time living off of the west coast. With my mind humming with the machinery of graph theory and longing for my various homes in the West I produced the images you find on this page. They show places I’ve lived or felt home, represented in a de-spatialized manner: as force-directed graphs. Each circle represents a room or an area, while the lines denote connections between those spaces, such as a door. One of these images might hypothetically be usable as a map, but instead I urge you to view them, as their presentation suggests, as constellations.
+        </p>
+        <div class="gallery">
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/anita.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/anita.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/lutz.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/lutz.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/solomon.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/solomon.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/blackhouse.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/blackhouse.png" /></a>
+          </div>
+        </div>
+        <p>
+        Constellations reflect the myths and memories of the cultures that named them and therein the culture itself. So too do these: they attempt to reflect a personal culture drawn together through memories of homes. These shared spaces are the context for many rich personal experiences that I have been lucky to share with friends and family members. Schmaltzily: just as we can choose to navigate following the north star and other astronomical landmarks, we can also navigate life by measuring our bearing from spaces we hold dear.
+        </p>
+        <div class="gallery">
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/mcnutt.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/mcnutt.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/sunriver.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/sunriver.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/rainbow.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/rainbow.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/hendricks-house.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/hendricks-house.png" /></a>
+          </div>
+        </div>
+        <p>
+Each of the images was printed on a 5"x7" photo card with a holiday greeting on the back. The graphs and labels in the cards were laid out through an application of a d3-force radial layout. They were then rendered to the browser via <a href="https://uber.github.io/react-vis/">react-vis</a>, ripped to svg via <a href="https://nytimes.github.io/svg-crowbar/">NYT’s svg crowbar</a>, fine tuned with Sketch, and then printed on a deskjet printer. The colors are from my much beloved <a href="https://gist.github.com/mcnuttandrew/7fe76e20c760e670ccc4ba41e8848064">BMC Color Pallete</a>. The code is available <a href="https://github.com/mcnuttandrew/home-graphs">here</a> if you are curious about the process.
+        </p>
+        <div class="gallery">
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/sebastians-cabin.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/sebastians-cabin.png" /></a>
+          </div>
+          <div class="picture-wrapper">
+            <a href="http://www.mcnutt.in/home-graphs/assets/desert.pdf"><img src="http://www.mcnutt.in/home-graphs/assets/desert.png" /></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </body>
 </html>
